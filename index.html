@@ -59,11 +59,12 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://shahar-sarfaty.github.io/" target="_blank">Shahar Sarfaty</a>,</span>
+            <!-- <span class="author-block"><a href="https://shahar-sarfaty.github.io/" target="_blank">Shahar Sarfaty</a>,</span> -->
+            <span class="author-block"><a href="https://www.linkedin.com/in/shahar-sarfaty-6bb31a116/" target="_blank">Shahar Sarfaty</a>,</span>
             <span class="author-block"><a href="https://adihaviv.github.io/" target="_blank">Adi Haviv</a>,</span>
             <span class="author-block"><a href="https://en-law.tau.ac.il/profile/urihacohen" target="_blank">Uri Y. Hacohen</a>,</span>
             <span class="author-block"><a href="https://en-law.tau.ac.il/profile/elkiniva" target="_blank">Niva Elkin-Koren</a>,</span>            
-            <span class="author-block"><a href="https://www.rlivni.sites.tau.ac.il/" target="_blank">Roi Livni</a></span>
+            <span class="author-block"><a href="https://www.rlivni.sites.tau.ac.il/" target="_blank">Roi Livni</a>,</span>
             <span class="author-block"><a href="https://en-exact-sciences.tau.ac.il/profile/amberman" target="_blank">Amit H. Bermano</a></span>
           </div>
 
@@ -172,24 +173,17 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Recent text-to-image generative models have demonstrated an unparalleled
-			ability to generate diverse and creative imagery guided by a target text
-			prompt. While revolutionary, current state-of-the-art diffusion models may
-			still fail in generating images that fully convey the semantics in the given
-			text prompt. We analyze the publicly available Stable Diffusion model and
-			assess the existence of catastrophic neglect, where the model fails to generate
-			one or more of the subjects from the input prompt. Moreover, we find that
-			in some cases the model also fails to correctly bind attributes (e.g. colors)
-			to their corresponding subjects. To help mitigate these failure cases, we
-			introduce the concept of Generative Semantic Nursing (GSN), where we
-			seek to intervene in the generative process on the fly during inference time
-			to improve the faithfulness of the generated images. Using an attention-
-			based formulation of GSN, dubbed Attend-and-Excite, we guide the model
-			to refine the cross-attention units to attend to all subject tokens in the text
-			prompt and strengthen — or excite — their activations, encouraging the
-			model to generate all subjects described in the text prompt. We compare
-			our approach to alternative approaches and demonstrate that it conveys the
-			desired concepts more faithfully across a range of text prompts.
+            The rapid proliferation of generative components, such as LoRAs, has created a vast but unstructured ecosystem. 
+            Existing discovery methods depend on unreliable user descriptions or biased popularity metrics, hindering usability. 
+            We present CARLoS, a large-scale framework for characterizing LoRAs without requiring additional metadata. 
+            Analyzing over 650 LoRAs, we employ them in image generation over a variety of prompts and seeds, as a credible way to assess their behavior. 
+            Using CLIP embeddings and their difference to a base-model generation, we concisely define a three-part representation: Directions, 
+            defining semantic shift; Strength, quantifying the significance of the effect; and Consistency, 
+            quantifying how stable the effect is. Using these representations, we develop an efficient retrieval framework that 
+            semantically matches textual queries to relevant LoRAs while filtering overly strong or unstable ones, outperforming textual 
+            baselines in automated and human evaluations. While retrieval is our primary focus, the same representation also supports analyses 
+            linking Strength and Consistency to legal notions of substantiality and volition, key considerations in copyright, positioning CARLoS as a 
+            practical system with broader relevance for LoRA analysis.
           </p>
         </div>
       </div>
@@ -198,7 +192,7 @@
   </div>
 </section>
 
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <h2 class="title has-text-centered">Video</h2>
@@ -207,7 +201,7 @@
       </center>
     </div>
   </div>
-</section>
+</section> -->
 
 <section class="hero is-small">
   <div class="hero-body">
@@ -215,7 +209,7 @@
       <h2 class="title has-text-centered">Examples of Text-to-Image Generation with Attend-and-Excite</h2>
       <div id="results-carousel" class="carousel results-carousel">
 	  <div class="column is-centered has-text-centered">
-        <img src="static/figures/grizzly.jpg" alt="cars peace" width="800px"/>
+        <img src="static/figures/gallery_art_styles.png" alt="cars peace" width="800px"/>
       </div>
 	  <div class="column is-centered has-text-centered">
         <img src="static/figures/elephant.jpg" alt="cars peace" width="800px"/>
