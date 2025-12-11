@@ -1,6 +1,6 @@
 /* --- Configuration Variables --- */
 :root {
-  --trio-img-width: 9px;  /* Width of one small square image */
+  --trio-img-width: 90px;  /* Width of one small square image */
   --trio-gap: 8px;         /* Space between images in a trio */
   --block-spacing: 30px;   /* Space between the 4 main groups */
 }
