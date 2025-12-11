@@ -1,0 +1,94 @@
+/* --- Configuration Variables --- */
+:root {
+  --trio-img-width: 90px;  /* Width of one small square image */
+  --trio-gap: 8px;         /* Space between images in a trio */
+  --block-spacing: 30px;   /* Space between the 4 main groups */
+}
+
+/* --- Main Container --- */
+.art-styles-wrapper {
+  width: 100%;
+  max-width: 900px; /* Limits width so it doesn't stretch too wide */
+  margin: 0 auto;
+  font-family: 'BlinkMacSystemFont', -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.main-headline {
+  font-family: "Comic Sans MS", "Chalkboard SE", sans-serif; /* Matches your handwritten style */
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+/* --- The 2x2 Grid Layout --- */
+.styles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: var(--block-spacing);
+  justify-content: center;
+}
+
+/* On mobile, collapse to 1 column */
+@media (max-width: 768px) {
+  .styles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Individual Style Group (The Trio) --- */
+.style-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.trio-container {
+  display: flex;
+  gap: var(--trio-gap);
+  justify-content: center;
+}
+
+/* --- The Individual Item (Rank + Image) --- */
+.trio-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rank-number {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+  color: #000;
+}
+
+.trio-link {
+  display: block;
+  width: var(--trio-img-width);
+  height: var(--trio-img-width);
+  overflow: hidden;
+  border-radius: 4px; /* Optional: rounds corners slightly */
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.trio-link:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  border: 2px solid #3273dc; /* Bulma blue border on hover */
+}
+
+.trio-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images fill the square without stretching */
+}
+
+/* --- The Bottom Caption (e.g. "Ink line art") --- */
+.style-caption {
+  margin-top: 10px;
+  font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+  font-size: 1.2rem;
+  color: #209cee; /* Similar blue to your screenshot */
+  font-weight: 600;
+}
