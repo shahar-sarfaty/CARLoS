@@ -42,25 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 label: "Ink line art",
                 items: [
-                    { img: "static/figures/gallery_images/ink_line_art_1.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/ink_line_art_2.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/ink_line_art_3.png", link: "http://google.com" },
+                    { img: "static/figures/gallery_images/ink_line_art_1.png", link: "https://civitai.com/models/136348?modelVersionId=150391" },
+                    { img: "static/figures/gallery_images/ink_line_art_2.png", link: "https://civitai.com/models/178117?modelVersionId=200108" },
+                    { img: "static/figures/gallery_images/ink_line_art_3.png", link: "https://civitai.com/models/120213/sdxl10-sketch-style-regulator-v1" },
                 ]
             },
             {
                 label: "Pixel art",
                 items: [
-                    { img: "static/figures/gallery_images/pixel_art_1.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/pixel_art_2.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/pixel_art_3.png", link: "http://google.com" },
+                    { img: "static/figures/gallery_images/pixel_art_1.png", link: "https://civitai.com/models/235689/pixel-art-sliders-ntcaixyz" },
+                    { img: "static/figures/gallery_images/pixel_art_2.png", link: "https://civitai.com/models/267667/16-bit-pixel-backgrounds-v2" },
+                    { img: "static/figures/gallery_images/pixel_art_3.png", link: "https://civitai.com/models/144684/pixelartredmond-pixel-art-loras-for-sd-xl" },
                 ]
             },
             {
                 label: "Impressionist style",
                 items: [
-                    { img: "static/figures/gallery_images/impressionist_1.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/impressionist_2.png", link: "http://google.com" },
-                    { img: "static/figures/gallery_images/impressionist_3.png", link: "http://google.com" },
+                    { img: "static/figures/gallery_images/impressionist_1.png", link: "https://civitai.com/models/160066/envy-anime-oil-xl-01" },
+                    { img: "static/figures/gallery_images/impressionist_2.png", link: "https://civitai.com/models/118223/sdxloil-paintingoil-brush-stroke" },
+                    { img: "static/figures/gallery_images/impressionist_3.png", link: "https://civitai.com/models/233083/watercolor-sliders-ntcaixyz" },
                 ]
             },
             {
