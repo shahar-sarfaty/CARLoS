@@ -193,5 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. Execute Render ---
     renderGrid("slide-art-styles", artStylesData);
-    // renderGrid("slide-physical-elements", physicalData);
+    renderGrid("slide-physical-elements", physicalData);
+    renderGrid("slide-cinematic-effects", cinematicData);
+    renderGrid("slide-semantic-shifts", semanticShiftData);
 });
