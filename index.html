@@ -105,29 +105,26 @@
 </section>
 
 
-<h4 class="title is-3">TL;DR: We evaluate LoRAs, their effect and their properties, and provide an efficient retrieval system for a large corpus collected from CivitAI.</h4>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="notification is-light has-text-centered">
+      <p class="title is-4"><strong>TL;DR:</strong> We evaluate LoRAs, their effects and properties, and provide an efficient retrieval system for a large corpus collected from CivitAI.</p>
+    </div>
+  </div>
+</section>
 
 <section class="hero is-small">
   <!-- <div class="hero-body"> -->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- <div id="results-carousel" class="carousel results-carousel"> -->
-      <div class="container">
-      <div class="item">
-      <div class="column is-centered has-text-centered">
-        <img src="static/figures/teaser_figure.png" alt="CARLoS" width="800px"/>
-      
-      <h2 class="subtitle">
-	Given a large pool of community generated Low Rank Adapters (LoRAs), our method, CARLoS, concisely represents them according to their influence on generation, and retrieves semantically relevant ones given a retrieval query (left). Since our efficient retrieval (right) is generation based, it finds the LoRAs that are visually similar to the query, outperforming retrieval methods that rely on the name and textual descriptions provided by LoRA creators (middle).
-      </h2>
-	  </div>
-    </div>
+ <div class="container is-max-desktop">
+  <div class="column is-centered has-text-centered">
+    <img src="static/figures/teaser_figure.png" alt="CARLoS Teaser" class="publication-banner-img"/>
+    <h2 class="subtitle has-text-centered">
+      <strong>CARLoS</strong> retrieves LoRAs by analyzing their generative behavior rather than relying on creators' descriptions.
+      Our retrieval pipeline (blue) matches query semantics to LoRA effects, outperforming text-based baselines (orange) in visual similarity.
+    </h2>
   </div>
- <!--  </div> -->
-  </div>
-  </div>
- <!--  </div> -->
+</div>
 </section>
 
 <section class="section hero is-light">
@@ -160,8 +157,7 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title has-text-centered">Example retrieval results by CARLoS</h2>
-      <div id="results-carousel" class="carousel results-carousel">
+      <div id="gallery-carousel" class="carousel results-carousel">
         <div class="column is-centered has-text-centered">
             <div id="slide-art-styles"></div>
         </div>
@@ -189,15 +185,23 @@
         <div class="content has-text-justified">
         </div>
 		<div class="column is-centered has-text-centered">
-        <img src="static/figures/overview_figure.png" alt="CARLoS Overview" width="800px"/>
+        <img src="static/figures/overview_figure.png" alt="CARLoS Overview" class="figure-img"/>
 		</div>
-		    <p class="content has-text-justified">
-          Given a set of curated LoRAs operating over the SDXL backbone, we represent each one as a three parts vector, used for efficient retrieval (left). 
-          To create our concise representation (top), we generate for each LoRA and the vanilla backbone images using <em>N</em> = 280 prompts and <em>M</em> = 16 seeds. 
-          We measure the semantic difference between the vanilla generation and the LoRAs in CLIP space (CLIP-diff), and store their average as a representative <em>Direction</em> effect, 
-          their mean magnitude to represent effect <em>Strength</em>, and their variance as a measure for <em>Consistency</em>. During retrieval (bottom), we measure the average CLIP space difference between a 
-          set of <em>N</em> different prompts with and without the retrieval query appended. We then simply retrieve the LoRAs with the most similar Direction vectors, 
-          and filter out LoRAs demonstrating above-threshold Strength and under-threshold Consistency.
+    <p class="content has-text-justified">
+        Given a set of curated LoRAs, we represent each one as a three-part vector for efficient retrieval. 
+        To create this representation (top), we generate images using <em>N</em> = 280 prompts and <em>M</em> = 16 seeds. 
+        We measure the semantic difference in CLIP space to define:
+        </p>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Direction:</strong> The average semantic shift (what the LoRA does).</li>
+            <li><strong>Strength:</strong> The mean magnitude of the shift (how intense it is).</li>
+            <li><strong>Consistency:</strong> The variance of the shift (how stable the effect is).</li>
+          </ul>
+        </div>
+        <p class="content has-text-justified">
+          During retrieval (bottom), we project the user's query into this same space and retrieve LoRAs with similar <strong>Direction</strong> vectors, 
+          while filtering out those with excessive <strong>Strength</strong> or poor <strong>Consistency</strong>.
         </p>
       </div>
     </div>
@@ -229,7 +233,7 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title has-text-centered">Comparisons</h2>
-      <div id="results-carousel" class="carousel results-carousel">
+      <div id="comparison-carousel" class="carousel results-carousel">
         <div class="column is-centered has-text-centered">
              <div id="comp-slide-celestial"></div>
         </div>

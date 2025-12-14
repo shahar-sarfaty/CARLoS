@@ -108,6 +108,7 @@
   text-align: center; /* Centers text within that span */
   margin-top: 15px;
   font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+  /* font-family: "Google Sans", sans-serif; */
   font-size: 1.4rem;
   color: #209cee; /* Matches your gallery blue */
   font-weight: 600;

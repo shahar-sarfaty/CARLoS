@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Configuration for Slide 1 (Art Styles)
     const artStylesData = {
-        title: "Art Styles",
+        title: "CARLoS Retrieval Examples - Art Styles",
         groups: [
             {
                 label: "Ink line art",
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuration for Slide 2 (Physical Elements)
     const physicalData = {
-        title: "Physical Elements",
+        title: "CARLoS Retrieval Examples - Physical Elements",
         groups: [
             {
                 label: "Foggy",
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuration for Slide 3 (Cinematic and Lighting Effects)
     const cinematicData = {
-        title: "Cinematic and Lighting Effects",
+        title: "CARLoS Retrieval Examples - Cinematic and Lighting Effects",
         groups: [
             {
                 label: "Neon lighting",
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Configuration for Slide 4 (Semantic Shift)
     const semanticShiftData = {
-        title: "Semantic Shift",
+        title: "CARLoS Retrieval Examples - Semantic Shift",
         groups: [
             {
                 label: "Kimono",
