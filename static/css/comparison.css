@@ -1,0 +1,126 @@
+/* static/css/comparison.css */
+
+:root {
+  --comp-img-size: 120px;   /* Size of the comparison squares */
+  --comp-gap: 6px;         /* Gap between images */
+  --comp-label-width: 80px; /* Width reserved for text like "CARLoS" */
+}
+
+/* Main Container */
+.comparison-wrapper {
+  display: flex;
+  flex-direction: row; /* Side by side: Source Image | Grid */
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Google Sans', sans-serif;
+  padding: 10px;
+}
+
+/* --- Left Side: Source Image --- */
+.source-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  text-align: center;
+}
+
+.source-label-top {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.source-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.source-prompt {
+  font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+/* --- Right Side: Results Grid --- */
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The Grid: 3 columns for images + 1 column for label */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(3, var(--comp-img-size)) var(--comp-label-width);
+  gap: var(--comp-gap);
+  align-items: center;
+}
+
+/* Header Row (#1 #2 #3) */
+.grid-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+/* The Images in the grid */
+.comp-link {
+  display: block;
+  width: 100%;
+  height: var(--comp-img-size);
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.comp-link:hover {
+  transform: scale(1.05);
+  border: 2px solid #3273dc;
+  z-index: 10;
+}
+
+.comp-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Method Labels (Right side text) */
+.method-label {
+  font-weight: bold;
+  font-size: 1rem;
+  padding-left: 10px;
+  text-align: left;
+}
+
+/* Bottom Title (e.g. "Pixel Art") */
+.comp-category-title {
+  grid-column: 1 / 4; /* SPAN: Covers columns 1, 2, and 3 only */
+  text-align: center; /* Centers text within that span */
+  margin-top: 15px;
+  font-family: "Comic Sans MS", "Chalkboard SE", sans-serif;
+  font-size: 1.4rem;
+  color: #209cee; /* Matches your gallery blue */
+  font-weight: 600;
+  width: 100%;
+}
+
+/* Responsive: Stack on mobile */
+@media (max-width: 768px) {
+  .comparison-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  :root {
+    --comp-img-size: 70px;
+  }
+}
