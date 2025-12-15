@@ -125,3 +125,36 @@
     --comp-img-size: 70px;
   }
 }
+
+/* --- New Additions for CARLoS Highlighting --- */
+
+/* 1. Highlight style for CARLoS images */
+.carlos-highlight {
+  border: 3px solid #3273dc; /* Bulma blue to match your theme */
+  box-shadow: 0 4px 12px rgba(50, 115, 220, 0.3); /* Soft blue glow */
+  transform: scale(1.02); /* Slight default pop */
+  z-index: 1; /* Ensure it sits above others */
+}
+
+/* 2. Highlight style for the "CARLoS" text label */
+.carlos-text-highlight {
+  color: #3273dc;
+  font-weight: 900; /* Extra bold */
+  letter-spacing: 0.5px;
+}
+
+/* 3. The "Clickable" Instruction Text */
+.click-instruction {
+  font-size: 0.85rem;
+  color: #7a7a7a;
+  margin-bottom: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.click-instruction i {
+  color: #3273dc;
+}

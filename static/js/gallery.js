@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const imagesHtml = group.items.map((item, index) => `
                 <div class="trio-item">
                     <span class="rank-number">#${index + 1}</span>
-                    <a href="${item.link}" class="trio-link">
+                    <a href="${item.link}" class="trio-link" target="_blank">
                         <img src="${item.img}" alt="${group.label} ${index + 1}">
                     </a>
                 </div>
@@ -25,10 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
 
+        // --- Define Instruction Text ---
+        const instructionHtml = `
+            <div class="click-instruction-gallery">
+                <i class="fas fa-external-link-alt"></i>
+                Click any image to view the LoRA model
+            </div>
+        `;
+
+        // --- Render Final HTML ---
         container.innerHTML = `
             <div class="art-styles-wrapper">
                 <h2 class="main-headline">${data.title}</h2>
-                <div class="styles-grid">${groupsHtml}</div>
+                ${instructionHtml} <div class="styles-grid">${groupsHtml}</div>
             </div>
         `;
     }

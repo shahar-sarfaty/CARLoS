@@ -14,15 +14,31 @@ document.addEventListener('DOMContentLoaded', () => {
             <div></div> `;
 
         // 2. Build Rows
+        // We insert this before the rows are built
+        let instructionHtml = `
+            <div class="click-instruction">
+                <i class="fas fa-external-link-alt"></i> 
+                Click any image to view the LoRA model
+            </div>
+        `;
+
+        // 2. Build Rows with Highlighting Logic
         data.rows.forEach(row => {
+            // Check if this is our method
+            const isCarlos = row.method === 'CARLoS';
+            
+            // Define classes based on the check
+            const imgClass = isCarlos ? 'comp-link carlos-highlight' : 'comp-link';
+            const textClass = isCarlos ? 'method-label carlos-text-highlight' : 'method-label';
+
             row.images.forEach((imgObj, index) => {
                 gridContent += `
-                    <a href="${imgObj.link}" class="comp-link">
+                    <a href="${imgObj.link}" class="${imgClass}" target="_blank">
                         <img src="${imgObj.src}" alt="${row.method} ${index + 1}">
                     </a>
                 `;
             });
-            gridContent += `<div class="method-label">${row.method}</div>`;
+            gridContent += `<div class="${textClass}">${row.method}</div>`;
         });
 
         // 3. Add Title INSIDE the grid (New Step)
@@ -39,16 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="results-panel">
-                    <div class="comparison-grid">
+                    ${instructionHtml} <div class="comparison-grid">
                         ${gridContent}
                     </div>
-                    </div>
+                </div>
             </div>
         `;
     }
-
-    // ... (Rest of your data configuration remains the same) ...
-
     // --- DATA CONFIGURATION ---
 
     // 1. Pixel Art Data
@@ -256,10 +269,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderComparison("comp-slide-low-key", lowKeyLightingData);
     renderComparison("comp-slide-futuristic", detailedFuturisticSceneData);
     renderComparison("comp-slide-celestial", celestialBeingData);
-    
-    // Note: Create similar data objects for Celestial, Futuristic, etc.
-    // renderComparison("comp-slide-celestial", celestialData);
-    // renderComparison("comp-slide-futuristic", futuristicData);
-    // renderComparison("comp-slide-low-key", lowKeyData);
-
 });
