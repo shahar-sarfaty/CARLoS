@@ -1,35 +1,191 @@
-# CARLoS: Retrieval via Concise Assessment Representation of LoRAs at Scale
+# CARLoS — CLIP-based LoRA Retrieval & Indexing
 
-**Authors:** Shahar Sarfaty, Adi Haviv, Uri Y. Hacohen, Niva Elkin-Koren, Roi Livni, Amit H. Bermano
+## 🚀 Quick Start
 
-[![arXiv](https://img.shields.io/badge/arXiv-[2512.08826]-b31b1b.svg)](https://arxiv.org/abs/2512.08826)
-[![Website](https://img.shields.io/badge/Website-Project_Page-blue)](https://shahar-sarfaty.github.io/CARLoS/)
+```bash
+# 1. Create environment
+conda create -n carlos python=3.9.16 -y
+conda activate carlos
+
+# 2. Install PyTorch with CUDA 12.6 and a requirements file
+python -m pip install --extra-index-url https://download.pytorch.org/whl/cu126 -r requirements-cu126.lock.txt
+
+# 3. Install CARLoS
+pip install carlos
+```
+
+```python
+import carlos
+
+# Load a writable copy of the bundled database
+carlos.copy_bundled_database("metrics.parquet", overwrite=False)
+db = carlos.load_database("metrics.parquet")
+
+# Run a retrieval query
+results = carlos.retrieve(db, "snowfall, cold winter scene", top_k=5)
+for r in results:
+    print(r.rank, r.lora_id, r.score)
+```
 
 ---
 
-## 🚧 Code Release Status
+## Overview
 
-**The code for this project is currently being organized and cleaned up.** We are planning to release the source code and data soon.
+**CARLoS** is a GPU-backed retrieval and indexing library for Stable Diffusion LoRA modules.
 
-Please **Star ⭐** and **Watch 👁️** this repository to receive a notification when the code is released.
+It supports two distinct workflows:
+
+1. **Retrieval (lightweight, GPU required but relatively cheap)**  
+   Query a prebuilt LoRA metrics database using natural language and retrieve the most relevant LoRAs.
+
+2. **Indexing (heavy, GPU-intensive)**  
+   Download a new LoRA (e.g. from CivitAI), generate images, compute CLIP-based metrics, and upsert the result into a local database.
+
+The project is designed as:
+- a clean Python library (`pip install carlos`)
+- reproducible via **conda**
+- GPU-first (CUDA handled outside pip)
+- safe for public use (no research artifacts exposed)
 
 ---
 
-## Abstract
+## Requirements & Assumptions
 
-The rapid proliferation of generative components, such as LoRAs, has created a vast but unstructured ecosystem. Existing discovery methods depend on unreliable user descriptions or biased popularity metrics, hindering usability. We present CARLoS, a large-scale framework for characterizing LoRAs without requiring additional metadata. Analyzing over 650 LoRAs, we employ them in image generation over a variety of prompts and seeds, as a credible way to assess their behavior. Using CLIP embeddings and their difference to a base-model generation, we concisely define a three-part representation: Directions, defining semantic shift; Strength, quantifying the significance of the effect; and Consistency, quantifying how stable the effect is. Using these representations, we develop an efficient retrieval framework that semantically matches textual queries to relevant LoRAs while filtering overly strong or unstable ones, outperforming textual baselines in automated and human evaluations. While retrieval is our primary focus, the same representation also supports analyses linking Strength and Consistency to legal notions of substantiality and volition, key considerations in copyright, positioning CARLoS as a practical system with broader relevance for LoRA analysis.
+- **Python**: 3.9.x  
+- **GPU**: NVIDIA GPU required
+- **CUDA**: Managed via conda or PyTorch wheels
+- **OS**: Linux recommended
+- **Storage**: Parquet-backed database
 
-## Citation
+> ⚠️ CPU-only execution is not supported.
 
-If you find our work helpful, please cite it as:
+---
 
-```bibtex
-@misc{sarfaty2025carlosretrievalconciseassessment,
-      title={CARLoS: Retrieval via Concise Assessment Representation of LoRAs at Scale}, 
-      author={Shahar Sarfaty and Adi Haviv and Uri Hacohen and Niva Elkin-Koren and Roi Livni and Amit H. Bermano},
-      year={2025},
-      eprint={2512.08826},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2512.08826}, 
-    }
+## Installation
+
+### Create Conda Environment
+
+```bash
+conda create -n carlos python=3.9.16 -y
+conda activate carlos
+```
+
+### Install PyTorch with CUDA
+
+```bash
+python -m pip install --extra-index-url https://download.pytorch.org/whl/cu126 -r requirements-cu126.lock.txt
+```
+
+Verify:
+
+```bash
+python -c "import torch; print(torch.cuda.is_available(), torch.version.cuda)"
+```
+
+### Install CARLoS
+
+```bash
+pip install carlos
+```
+
+---
+
+## Public API
+
+Most users only need:
+
+```python
+import carlos
+```
+
+Main entry points:
+- `carlos.copy_bundled_database`
+- `carlos.load_database`
+- `carlos.retrieve`
+- `carlos.index_lora`
+
+---
+
+## Retrieval Example
+
+```python
+from pathlib import Path
+import carlos
+
+out_dir = Path("/path/to/output")
+out_dir.mkdir(parents=True, exist_ok=True)
+
+db_parquet = out_dir / "metrics_database.local.parquet"
+carlos.copy_bundled_database(db_parquet, overwrite=False)
+db = carlos.load_database(db_parquet)
+
+queries = [
+    "snowfall, cold winter scene, visible breath",
+    "oil painting style",
+    "pixel art style",
+]
+
+for q in queries:
+    results = carlos.retrieve(db, q, top_k=10)
+    print(f"\nQuery: {q}")
+    for r in results:
+        print(f"[{r.rank}] id={r.lora_id} score={r.score:.4f}")
+```
+
+---
+
+## Indexing Example (GPU-Heavy)
+
+```python
+from pathlib import Path
+import carlos
+
+model_id = "2300298"
+version_id = "2588340"
+
+out_dir = Path("/path/to/output")
+out_dir.mkdir(parents=True, exist_ok=True)
+
+db_parquet = out_dir / "metrics_database.local.parquet"
+carlos.copy_bundled_database(db_parquet, overwrite=False)
+db = carlos.load_database(db_parquet)
+
+result = carlos.index_lora(
+    db,
+    lora_source="civitai",
+    model_id=model_id,
+    version_id=version_id,
+    overwrite=False,
+    working_directory=out_dir / "work",
+)
+
+db.save_parquet(db_parquet)
+
+print("Indexed:", result.row["version_id"])
+print("Strength:", result.vector.strength)
+print("Consistency:", result.vector.consistency)
+```
+
+---
+
+## CivitAI Access (Optional)
+
+```bash
+export CIVITAI_API_KEY=your_key_here
+```
+
+---
+
+## Development Philosophy
+
+- `src/` layout
+- `pyproject.toml`
+- minimal public API
+- no generated artifacts committed
+- GPU runtime handled externally
+
+---
+
+## License
+
+MIT License.

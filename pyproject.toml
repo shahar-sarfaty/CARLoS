@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carlos"
+dynamic = ["version"]
+description = "GPU-based indexing and retrieval pipeline for LoRAs"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+license = { file = "LICENSE" }
+keywords = ["retrieval", "pytorch", "gpu", "indexing", "LoRAs"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "License :: OSI Approved :: MIT License",
+]
+authors = [
+    { name = "Shahar Sarfaty" }
+]
+
+dependencies = [
+  "numpy==1.23.5",
+  "pandas==2.1.4",
+  "pyarrow==17.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.4",
+]
+
+[tool.setuptools.dynamic]
+version = { attr = "carlos._version.__version__" }
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+carlos = ["data/*.parquet"]
+
+[project.urls]
+Homepage = "https://shahar-sarfaty.github.io/CARLoS/"
+Repository = "https://github.com/shahar-sarfaty/CARLoS"
+Issues = "https://github.com/shahar-sarfaty/CARLoS/issues"

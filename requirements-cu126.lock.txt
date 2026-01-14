@@ -1,0 +1,26 @@
+# --- PyTorch CUDA 12.6 wheels ---
+# Install with:
+#   python -m pip install --index-url https://download.pytorch.org/whl/cu126 -r requirements-cu126.lock.txt
+
+torch==2.8.0+cu126
+torchvision==0.23.0+cu126
+
+# --- Explicit pip CUDA runtime components (match your dev env exactly) ---
+nvidia-cuda-runtime-cu12==12.6.77
+nvidia-cuda-nvrtc-cu12==12.6.77
+nvidia-cuda-cupti-cu12==12.6.80
+
+# --- Your HF stack pins (match your dev env exactly) ---
+transformers==4.56.1
+diffusers==0.32.1
+
+# --- Numerics (match your dev env exactly) ---
+numpy==1.23.5
+
+# --- Other packages you showed (only include if you truly need them at runtime) ---
+open-clip-torch==2.20.0
+sentence-transformers==5.1.0
+pytorch-lightning==1.9.4
+torchmetrics==1.4.0.post0
+torchdiffeq==0.2.3
+torchsde==0.2.6
