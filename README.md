@@ -24,7 +24,7 @@ db = carlos.load_database("metrics.parquet")
 # Run a retrieval query
 results = carlos.retrieve(db, "snowfall, cold winter scene", top_k=5)
 for r in results:
-    print(r.rank, r.lora_id, r.score)
+    print(r.rank, r.lora_id, r.score, f"Name={r.row.get('model_name', '<unknown>')}", f"URL=https://civitai.com/models/{r.row['model_id']}")
 ```
 
 ---
@@ -129,7 +129,7 @@ for q in queries:
     results = carlos.retrieve(db, q, top_k=10)
     print(f"\nQuery: {q}")
     for r in results:
-        print(f"[{r.rank}] id={r.lora_id} score={r.score:.4f}")
+        print(f'[{r.rank}] id={r.lora_id} score={r.score:.4f} Name={r.row.get("model_name", "<unknown>")} URL=https://civitai.com/models/{r.row["model_id"]}')
 ```
 
 ---
