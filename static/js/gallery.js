@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 label: "An image with an exceptionally high level of fine detail and texture",
                 items: [
                     { img: "static/figures/gallery_images/high_details_1.png", link: "https://civitai.com/models/269592?modelVersionId=303921" },
-                    { img: "static/figures/gallery_images/high_details_2.png", link: "#https://civitai.com/models/470073?modelVersionId=560995" },
+                    { img: "static/figures/gallery_images/high_details_2.png", link: "https://civitai.com/models/470073?modelVersionId=560995" },
                     { img: "static/figures/gallery_images/high_details_3.png", link: "https://civitai.com/models/134614/pe-epic-land-style-landscapes" }
                 ]
             },
